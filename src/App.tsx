@@ -59,13 +59,13 @@ const Hero = () => (
         transition={{ duration: 0.8 }}
       >
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-gold/30 text-brand-gold text-xs font-bold uppercase tracking-[0.2em] mb-6">
-          <Globe className="w-3 h-3" /> Londres • Brasil
+          <Globe className="w-3 h-3" /> • Brasil •
         </div>
         <h1 className="text-5xl md:text-7xl font-serif leading-[1.1] mb-8">
-          Escala <span className="italic text-brand-gold">Europeia</span>, Resiliência <span className="text-brand-gold">Brasileira</span>.
+          Escala <span className="italic text-brand-gold">Nacional</span>, Resiliência <span className="text-brand-gold">Brasileira</span>.
         </h1>
         <p className="text-lg md:text-xl text-brand-offwhite/70 max-w-xl mb-10 leading-relaxed font-light">
-          Unimos o rigor técnico e estético de Londres à força do empreendedorismo local para transformar marcas em máquinas de faturamento.
+          A força do empreendedorismo local para transformar marcas em máquinas de faturamento.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <a href="https://wa.me/5511983404617" className="btn-primary">
@@ -126,10 +126,18 @@ const Authority = () => (
           <h2 className="text-sm font-bold text-brand-gold uppercase tracking-[0.3em] mb-4">A Ponte entre dois mundos</h2>
           <h3 className="text-4xl md:text-5xl font-serif mb-8">Da disciplina de Londres à força do Brasil.</h3>
           <p className="text-lg text-brand-black/70 mb-6 italic">
-            "A performance não é apenas um número, é um design intencional de cada ponto de contato."
+            "A performance não é apenas um número, é um design de cada ponto de contato."
           </p>
           <p className="text-brand-black/80 leading-relaxed mb-8">
-            Pedro trouxe na bagagem a cultura de excelência das grandes agências europeias. Na Martins & Co., não entregamos apenas "anúncios". Entregamos <strong>Design de Performance</strong>: a união entre análise granular de dados e estética de boutique.
+            Minha jornada começou na Universidade de Mogi das Cruzes, onde mergulhei no Design Gráfico. Ali, entendi que a imagem de uma empresa não pode ser apenas "bonita" — ela precisa ser funcional, atrair o olhar e comunicar autoridade instantânea.
+Mas eu sabia que o design sozinho era apenas metade da equação. Por isso, fui buscar o que há de mais avançado em estratégia de mercado no Reino Unido, graduando-me em Business Management pela Bath Spa University.
+Lá, entendi como os grandes negócios escalam: através de processos, métricas e gestão eficiente.
+
+O Elo Perfeito
+Ao retornar, percebi um padrao comum no mercado brasileiro: agências que fazem artes lindas, mas não entendem de negócios, ou gestores que olham números, mas negligenciam o marketing da empresa.
+
+A Martins & Co nasceu para ser o elo perfeito que faltava.
+Unimos a precisão do design brasileiro que converge com a experiência de gestão britânica. Não entregamos apenas anúncios no Google ou um site administrado; entregamos uma <strong>Engrenagem de Vendas</strong> completa, onde cada pixel e cada centavo investido têm um único propósito: fazer sua empresa crescer. 
           </p>
           <div className="flex items-center gap-6">
             <div>
@@ -153,7 +161,7 @@ const Services = () => (
     <div className="section-container">
       <div className="text-center max-w-3xl mx-auto mb-20">
         <h2 className="text-sm font-bold text-brand-gold uppercase tracking-[0.3em] mb-4">O que fazemos</h2>
-        <h3 className="text-4xl md:text-5xl font-serif">Soluções de Elite para quem busca o Próximo Nível.</h3>
+        <h3 className="text-4xl md:text-5xl font-serif">Soluções de vendas para quem busca o Próximo Nível.</h3>
       </div>
 
       <div className="grid md:grid-cols-3 gap-8">
@@ -161,13 +169,13 @@ const Services = () => (
           {
             icon: Target,
             title: "Gestão de Google Ads",
-            desc: "Dominamos o tráfego de intenção. Posicionamos sua marca onde o dinheiro está pronto para ser gasto, com foco em ROI real.",
+            desc: "Dominamos o tráfego de intenção. Posicionamos sua marca onde o dinheiro está pronto para ser gasto, com foco em retorno real.",
             benefit: "Escalabilidade e Previsibilidade"
           },
           {
             icon: Layout,
             title: "Performance Landing Pages",
-            desc: "Páginas que não apenas informam, mas convertem. Design europeu focado em guiar o olhar para a decisão de compra.",
+            desc: "Páginas que não apenas informam, mas convertem. Design focado em guiar o olhar para a decisão de compra.",
             benefit: "Aumento Imediato de Conversão"
           },
           {
@@ -208,13 +216,13 @@ const WhyUs = () => (
         <div>
           <h2 className="text-4xl md:text-5xl font-serif mb-8">Por que a Martins & Co.<br/><span className="text-brand-gold">é o seu destino final?</span></h2>
           <p className="text-brand-black/70 text-lg mb-12">
-            Não somos uma agência de volume. Somos uma boutique de resultado. Selecionamos nossos parceiros para garantir que cada um tenha o vigor técnico que merece.
+            Não somos uma agência de volume. Somos uma agencia que faz entrega de resultados. Selecionamos nossos parceiros para garantir que cada um tenha o vigor técnico que merece.
           </p>
           <div className="space-y-8">
             {[
               { icon: Users, title: "Pessoas acima de Dashboards", desc: "Sua marca é cuidada por quem entende de negócios, não apenas por estagiários de anúncios." },
               { icon: ShieldCheck, title: "Transparência Absoluta", desc: "Você sabe exatamente para onde vai cada centavo. Sem métricas de vaidade, apenas lucro." },
-              { icon: Award, title: "Rigor Técnico Europeu", desc: "Fomos forjados na exigência de Londres. Nosso padrão de entrega é o 'Padrão Ouro'." }
+              { icon: Award, title: "Rigor Técnico Europeu", desc: "Fomos forjados na exigência. Nosso padrão de entrega é padrão ouro'." }
             ].map((pillar, i) => (
               <div key={i} className="flex gap-4">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center">
@@ -265,7 +273,7 @@ const Footer = () => (
             MARTINS<span className="text-brand-gold">.</span>CO
           </span>
           <p className="text-brand-offwhite/50 max-w-sm mb-8">
-            Consultoria de marketing digital boutique para marcas que não aceitam o mediano.
+            Consultoria de marketing digital para marcas que não aceitam o mediano.
           </p>
           <div className="flex gap-4">
             <a href="#" className="w-10 h-10 rounded-full border border-brand-gold/20 flex items-center justify-center hover:bg-brand-gold transition-all group">
