@@ -298,9 +298,9 @@ const Footer = () => (
         <div>
           <h5 className="font-bold uppercase tracking-widest text-xs text-brand-gold mb-6">Contato</h5>
           <ul className="space-y-4 text-sm text-brand-offwhite/60">
-            <li>contato@martinsco.com.br</li>
+            <li>pedromartinsvlr@gmail.com.br</li>
             <li>@martins.co_</li>
-            <li>São Paulo • Londres</li>
+            <li>São Paulo • Brasil</li>
           </ul>
         </div>
       </div>
