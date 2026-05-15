@@ -129,8 +129,8 @@ const Authority = () => (
             "A performance não é apenas um número, é um design de cada ponto de contato."
           </p>
           <p className="text-brand-black/80 leading-relaxed mb-8">
-            Minha jornada começou na Universidade de Mogi das Cruzes, onde mergulhei no Design Gráfico. Ali, entendi que a imagem de uma empresa não pode ser apenas "bonita" — ela precisa ser funcional, atrair o olhar e comunicar autoridade instantânea.
-Mas eu sabia que o design sozinho era apenas metade da equação. Por isso, fui buscar o que há de mais avançado em estratégia de mercado no Reino Unido, graduando-me em Business Management pela Bath Spa University.
+            Minha jornada começou na Universidade de Mogi das Cruzes, onde mergulhei no <strong>Design Gráfico</strong>. Ali, entendi que a imagem de uma empresa não pode ser apenas "bonita" — ela precisa ser funcional, atrair o olhar e comunicar autoridade instantânea.
+Mas eu sabia que o design sozinho era apenas metade da equação. Por isso, fui buscar o que há de mais avançado em estratégia de mercado no Reino Unido, graduando-me em <strong>Business Management</strong> pela Bath Spa University.
 Lá, entendi como os grandes negócios escalam: através de processos, métricas e gestão eficiente.
 
 O Elo Perfeito
