@@ -16,13 +16,15 @@ import {
   Award
 } from "lucide-react";
 
+import { HeroBackground } from './components/HeroBackground';
+
 // --- Components ---
 
 const Navbar = () => (
   <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-offwhite/80 backdrop-blur-md border-b border-brand-gold/10">
     <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       <div className="flex items-center gap-2">
-        <span className="text-2xl font-serif font-bold tracking-tighter">
+        <span className="text-2xl font-glassure font-bold tracking-tighter">
           MARTINS<span className="text-brand-gold">.</span>CO
         </span>
       </div>
@@ -44,55 +46,32 @@ const Navbar = () => (
 );
 
 const Hero = () => (
-  <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-brand-black text-brand-offwhite">
+  <section className="relative min-h-screen flex items-end overflow-hidden bg-brand-offwhite text-brand-black pb-12 md:pb-20">
+    <HeroBackground />
     {/* Subtle Background Pattern */}
-    <div className="absolute inset-0 opacity-20 pointer-events-none">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/10 blur-[120px] rounded-full" />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-brand-gold/5 blur-[80px] rounded-full" />
+    <div className="absolute inset-0 opacity-20 pointer-events-none z-0">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/20 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-brand-gold/10 blur-[80px] rounded-full" />
     </div>
 
-    <div className="section-container relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+    <div className="max-w-7xl mx-auto px-6 relative z-10 w-full pt-32">
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
+        className="max-w-2xl"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-gold/30 text-brand-gold text-xs font-bold uppercase tracking-[0.2em] mb-6">
-          <Globe className="w-3 h-3" /> • Brasil •
-        </div>
-        <h1 className="text-5xl md:text-7xl font-serif leading-[1.1] mb-8">
-          Escala <span className="italic text-brand-gold">Nacional</span>, Resiliência <span className="text-brand-gold">Brasileira</span>.
-        </h1>
-        <p className="text-lg md:text-xl text-brand-offwhite/70 max-w-xl mb-10 leading-relaxed font-light">
-          A força do empreendedorismo local para transformar marcas em máquinas de faturamento.
+        <p className="text-lg md:text-xl text-brand-black/70 max-w-xl mb-10 leading-relaxed font-light">
+          Unimos o rigor técnico e estético de Londres à força do empreendedorismo local para transformar marcas em máquinas de faturamento.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <a href="https://wa.me/5511983404617" className="btn-primary">
             Escalar meu Negócio <MessageCircle className="w-5 h-5" />
           </a>
-          <button className="px-8 py-4 border border-brand-offwhite/20 hover:border-brand-gold/50 transition-all font-medium">
+          <button className="px-8 py-4 border border-brand-black/20 hover:border-brand-gold/50 transition-all font-medium">
             Conhecer Metodologia
           </button>
-        </div>
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="relative lg:block hidden"
-      >
-        <div className="relative aspect-[4/5] max-w-md mx-auto">
-          {/* Placeholder for "PM Dourado" Logo or Backdrop Photo */}
-          <div className="absolute inset-0 border border-brand-gold/20 -m-4 -z-10" />
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2301&auto=format&fit=crop')] bg-cover bg-center grayscale contrast-125 opacity-40" />
-          <div className="absolute inset-0 flex items-center justify-center">
-             <div className="w-48 h-48 border-2 border-brand-gold flex items-center justify-center rotate-45">
-                <span className="text-7xl font-serif text-brand-gold -rotate-45 leading-none">PM</span>
-             </div>
-          </div>
         </div>
       </motion.div>
     </div>
@@ -111,9 +90,9 @@ const Authority = () => (
            className="relative aspect-video lg:aspect-square bg-gray-200 overflow-hidden"
         >
           <img 
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop" 
+            src="/hero.png" 
             alt="Pedro Martins" 
-            className="w-full h-full object-cover grayscale"
+            className="w-full h-full object-cover -scale-x-100"
           />
         </motion.div>
         
@@ -126,18 +105,10 @@ const Authority = () => (
           <h2 className="text-sm font-bold text-brand-gold uppercase tracking-[0.3em] mb-4">A Ponte entre dois mundos</h2>
           <h3 className="text-4xl md:text-5xl font-serif mb-8">Da disciplina de Londres à força do Brasil.</h3>
           <p className="text-lg text-brand-black/70 mb-6 italic">
-            "A performance não é apenas um número, é um design de cada ponto de contato."
+            "A performance não é apenas um número, é um design intencional de cada ponto de contato."
           </p>
           <p className="text-brand-black/80 leading-relaxed mb-8">
-            Minha jornada começou na Universidade de Mogi das Cruzes, onde mergulhei no <strong>Design Gráfico</strong>. Ali, entendi que a imagem de uma empresa não pode ser apenas "bonita" — ela precisa ser funcional, atrair o olhar e comunicar autoridade instantânea.
-Mas eu sabia que o design sozinho era apenas metade da equação. Por isso, fui buscar o que há de mais avançado em estratégia de mercado no Reino Unido, graduando-me em <strong>Business Management</strong> pela Bath Spa University.
-Lá, entendi como os grandes negócios escalam: através de processos, métricas e gestão eficiente.
-
-O Elo Perfeito
-Ao retornar, percebi um padrao comum no mercado brasileiro: agências que fazem artes lindas, mas não entendem de negócios, ou gestores que olham números, mas negligenciam o marketing da empresa.
-
-A Martins & Co nasceu para ser o elo perfeito que faltava.
-Unimos a precisão do design brasileiro que converge com a experiência de gestão britânica. Não entregamos apenas anúncios no Google ou um site administrado; entregamos uma <strong>Engrenagem de Vendas</strong> completa, onde cada pixel e cada centavo investido têm um único propósito: fazer sua empresa crescer. 
+            Pedro trouxe na bagagem a cultura de excelência das grandes agências europeias. Na Martins & Co., não entregamos apenas "anúncios". Entregamos <strong>Design de Performance</strong>: a união entre análise granular de dados e estética de boutique.
           </p>
           <div className="flex items-center gap-6">
             <div>
@@ -161,7 +132,7 @@ const Services = () => (
     <div className="section-container">
       <div className="text-center max-w-3xl mx-auto mb-20">
         <h2 className="text-sm font-bold text-brand-gold uppercase tracking-[0.3em] mb-4">O que fazemos</h2>
-        <h3 className="text-4xl md:text-5xl font-serif">Soluções de vendas para quem busca o Próximo Nível.</h3>
+        <h3 className="text-4xl md:text-5xl font-serif">Soluções de Elite para quem busca o Próximo Nível.</h3>
       </div>
 
       <div className="grid md:grid-cols-3 gap-8">
@@ -169,13 +140,13 @@ const Services = () => (
           {
             icon: Target,
             title: "Gestão de Google Ads",
-            desc: "Dominamos o tráfego de intenção. Posicionamos sua marca onde o dinheiro está pronto para ser gasto, com foco em retorno real.",
+            desc: "Dominamos o tráfego de intenção. Posicionamos sua marca onde o dinheiro está pronto para ser gasto, com foco em ROI real.",
             benefit: "Escalabilidade e Previsibilidade"
           },
           {
             icon: Layout,
             title: "Performance Landing Pages",
-            desc: "Páginas que não apenas informam, mas convertem. Design focado em guiar o olhar para a decisão de compra.",
+            desc: "Páginas que não apenas informam, mas convertem. Design europeu focado em guiar o olhar para a decisão de compra.",
             benefit: "Aumento Imediato de Conversão"
           },
           {
@@ -216,13 +187,13 @@ const WhyUs = () => (
         <div>
           <h2 className="text-4xl md:text-5xl font-serif mb-8">Por que a Martins & Co.<br/><span className="text-brand-gold">é o seu destino final?</span></h2>
           <p className="text-brand-black/70 text-lg mb-12">
-            Não somos uma agência de volume. Somos uma agencia que faz entrega de resultados. Selecionamos nossos parceiros para garantir que cada um tenha o vigor técnico que merece.
+            Não somos uma agência de volume. Somos uma boutique de resultado. Selecionamos nossos parceiros para garantir que cada um tenha o vigor técnico que merece.
           </p>
           <div className="space-y-8">
             {[
               { icon: Users, title: "Pessoas acima de Dashboards", desc: "Sua marca é cuidada por quem entende de negócios, não apenas por estagiários de anúncios." },
               { icon: ShieldCheck, title: "Transparência Absoluta", desc: "Você sabe exatamente para onde vai cada centavo. Sem métricas de vaidade, apenas lucro." },
-              { icon: Award, title: "Rigor Técnico Europeu", desc: "Fomos forjados na exigência. Nosso padrão de entrega é padrão ouro'." }
+              { icon: Award, title: "Rigor Técnico Europeu", desc: "Fomos forjados na exigência de Londres. Nosso padrão de entrega é o 'Padrão Ouro'." }
             ].map((pillar, i) => (
               <div key={i} className="flex gap-4">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center">
@@ -273,7 +244,7 @@ const Footer = () => (
             MARTINS<span className="text-brand-gold">.</span>CO
           </span>
           <p className="text-brand-offwhite/50 max-w-sm mb-8">
-            Consultoria de marketing digital para marcas que não aceitam o mediano.
+            Consultoria de marketing digital boutique para marcas que não aceitam o mediano.
           </p>
           <div className="flex gap-4">
             <a href="#" className="w-10 h-10 rounded-full border border-brand-gold/20 flex items-center justify-center hover:bg-brand-gold transition-all group">
@@ -298,9 +269,9 @@ const Footer = () => (
         <div>
           <h5 className="font-bold uppercase tracking-widest text-xs text-brand-gold mb-6">Contato</h5>
           <ul className="space-y-4 text-sm text-brand-offwhite/60">
-            <li>pedromartinsvlr@gmail.com.br</li>
+            <li>contato@martinsco.com.br</li>
             <li>@martins.co_</li>
-            <li>São Paulo • Brasil</li>
+            <li>São Paulo • Londres</li>
           </ul>
         </div>
       </div>

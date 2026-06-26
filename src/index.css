@@ -4,6 +4,7 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-glassure: "Glassure", ui-serif, Georgia, serif;
   
   --color-brand-gold: #D4AF37;
   --color-brand-black: #0A0A0A;
