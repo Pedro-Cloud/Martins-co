@@ -1,44 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+@font-face {
+  font-family: 'Glassure'; 
+  src: url('/fonts/Glassure.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
   --font-glassure: "Glassure", ui-serif, Georgia, serif;
-  
-  --color-brand-gold: #D4AF37;
-  --color-brand-black: #0A0A0A;
-  --color-brand-offwhite: #F9F7F2;
+  --font-geom: "Geom", sans-serif;
 }
 
 @layer base {
   body {
-    @apply bg-brand-offwhite text-brand-black font-sans antialiased;
-  }
-  
-  h1, h2, h3, h4 {
-    @apply font-serif;
+    @apply bg-white text-neutral-900 font-sans antialiased overflow-x-hidden selection:bg-neutral-200 selection:text-black;
   }
 }
 
-@layer utilities {
-  .gold-gradient {
-    background: linear-gradient(135deg, #D4AF37 0%, #F1D592 50%, #B8860B 100%);
-  }
-
-  .text-gold-gradient {
-    background: linear-gradient(135deg, #D4AF37 0%, #F1D592 50%, #B8860B 100%);
-    @apply bg-clip-text text-transparent;
-  }
-}
-
-@layer components {
-  .btn-primary {
-    background: linear-gradient(135deg, #D4AF37 0%, #F1D592 50%, #B8860B 100%);
-    @apply text-brand-black px-8 py-4 font-bold rounded-sm transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-xl hover:shadow-brand-gold/20 flex items-center justify-center gap-2 cursor-pointer;
-  }
-
-  .section-container {
-    @apply max-w-7xl mx-auto px-6 py-20 md:py-32;
-  }
-}

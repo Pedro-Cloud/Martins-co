@@ -1,179 +1,201 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import { motion } from "motion/react";
+import React from 'react';
+import { motion } from 'motion/react';
 import { 
-  TrendingUp, 
-  Layout, 
-  ChevronRight, 
-  MessageCircle, 
-  ShieldCheck, 
+  Globe, 
   Target, 
-  Users,
-  Globe,
-  Award
-} from "lucide-react";
-
+  TrendingUp, 
+  ShieldCheck, 
+  ChevronRight,
+  MessageCircle,
+  Award,
+  ArrowDownRight,
+  ArrowRight,
+  Home,
+  User,
+  Briefcase,
+  Mail,
+  Menu,
+  X
+} from 'lucide-react';
 import { HeroBackground } from './components/HeroBackground';
+import { SpecialText } from './components/ui/special-text';
 
 // --- Components ---
 
-const Navbar = () => (
-  <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-offwhite/80 backdrop-blur-md border-b border-brand-gold/10">
-    <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <span className="text-2xl font-glassure font-bold tracking-tighter">
-          MARTINS<span className="text-brand-gold">.</span>CO
-        </span>
-      </div>
-      <div className="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest">
-        <a href="#services" className="hover:text-brand-gold transition-colors">Serviços</a>
-        <a href="#about" className="hover:text-brand-gold transition-colors">Sobre</a>
-        <a href="#why" className="hover:text-brand-gold transition-colors">Diferenciais</a>
-        <a 
-          href="https://wa.me/5511983404617" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-brand-gold border border-brand-gold px-4 py-2 hover:bg-brand-gold hover:text-brand-black transition-all"
-        >
-          Falar no WhatsApp
+const Sidebar = () => (
+  <aside className="hidden lg:block fixed left-6 top-1/2 -translate-y-1/2 z-30">
+    <div className="flex flex-col gap-2 bg-white border-neutral-200 border rounded-full p-2 shadow-lg items-center">
+      {[
+        { icon: Home, label: 'Início', href: '#' },
+        { icon: Briefcase, label: 'Projetos', href: '#services' },
+        { icon: User, label: 'Sobre', href: '#about' },
+        { icon: Mail, label: 'Contato', href: 'https://wa.me/5511983404617' }
+      ].map((item, i) => (
+        <a key={i} href={item.href} className="group grid place-items-center hover:text-black hover:bg-neutral-100 transition relative text-neutral-400 w-10 h-10 rounded-full cursor-pointer">
+          <item.icon className="w-4 h-4" />
+          <span className="absolute left-12 bg-neutral-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none font-mono">
+            {item.label}
+          </span>
         </a>
+      ))}
+    </div>
+  </aside>
+);
+
+const Hero = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+
+  return (
+    <header className="relative w-full min-h-screen flex flex-col justify-between p-6 sm:p-12 z-10 overflow-hidden bg-white">
+      <div className="absolute inset-0 z-0 opacity-40">
+        <HeroBackground />
+      </div>
+      
+      <div className="flex justify-between items-center sm:items-start w-full max-w-[1400px] mx-auto z-50 relative">
+        <div className="text-xl font-bold tracking-tight text-black font-geom z-50 relative">martins.co</div>
+        
+        {/* Desktop Nav */}
+        <nav className="hidden sm:flex gap-8 text-xs font-medium text-neutral-500 uppercase tracking-wide font-mono">
+          <a href="#about" className="hover:text-black transition-colors">sobre</a>
+          <a href="#services" className="hover:text-black transition-colors">serviços</a>
+          <a href="#why" className="hover:text-black transition-colors">diferenciais</a>
+          <a href="https://wa.me/5511983404617" className="hover:text-black transition-colors">contato</a>
+        </nav>
+
+        {/* Mobile Nav Toggle */}
+        <button 
+          className="sm:hidden text-black z-50 relative p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+
+        {/* Mobile Nav Overlay */}
+        <div className={`fixed inset-0 bg-white z-40 transition-transform duration-300 ease-in-out ${mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+          <nav className="flex flex-col items-center justify-center h-full gap-8 text-lg font-medium text-black uppercase tracking-widest font-mono">
+            <a href="#about" onClick={() => setMobileMenuOpen(false)}>sobre</a>
+            <a href="#services" onClick={() => setMobileMenuOpen(false)}>serviços</a>
+            <a href="#why" onClick={() => setMobileMenuOpen(false)}>diferenciais</a>
+            <a href="https://wa.me/5511983404617" onClick={() => setMobileMenuOpen(false)}>contato</a>
+          </nav>
+        </div>
+      </div>
+
+      <div className="flex-1 flex flex-col justify-center items-center w-full z-10 relative mt-12 md:mt-0">
+      <div className="text-center">
+        <h1 className="text-[15vw] md:text-[18vw] lg:text-[22vh] font-geom font-[750] tracking-tighter leading-none mb-4">
+          <span className="block text-black">i build</span>
+          <span className="block text-neutral-400">websites.</span>
+        </h1>
+        <p className="text-xl md:text-2xl text-neutral-400 font-normal tracking-tight">Design de Performance</p>
       </div>
     </div>
-  </nav>
-);
 
-const Hero = () => (
-  <section className="relative min-h-screen flex items-end overflow-hidden bg-brand-offwhite text-brand-black pb-12 md:pb-20">
-    <HeroBackground />
-    {/* Subtle Background Pattern */}
-    <div className="absolute inset-0 opacity-20 pointer-events-none z-0">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/20 blur-[120px] rounded-full" />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-brand-gold/10 blur-[80px] rounded-full" />
-    </div>
-
-    <div className="max-w-7xl mx-auto px-6 relative z-10 w-full pt-32">
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="max-w-2xl"
+    <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 w-full max-w-[1400px] mx-auto z-10 relative">
+      <SpecialText className="text-xs font-medium text-neutral-500 uppercase tracking-wide font-mono whitespace-nowrap overflow-hidden inline-block">
+        Websites premium desenvolvidos para empresas que desejam crescer com estratégia.
+      </SpecialText>
+      <button 
+        onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+        className="group flex items-center gap-2 text-xs font-bold tracking-widest uppercase border-b border-black pb-1 hover:text-neutral-600 hover:border-neutral-400 transition-all font-mono whitespace-nowrap"
       >
-        <p className="text-lg md:text-xl text-brand-black/70 max-w-xl mb-10 leading-relaxed font-light">
-          Unimos o rigor técnico e estético de Londres à força do empreendedorismo local para transformar marcas em máquinas de faturamento.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <a href="https://wa.me/5511983404617" className="btn-primary">
-            Escalar meu Negócio <MessageCircle className="w-5 h-5" />
-          </a>
-          <button className="px-8 py-4 border border-brand-black/20 hover:border-brand-gold/50 transition-all font-medium">
-            Conhecer Metodologia
-          </button>
-        </div>
-      </motion.div>
+        Explorar <span className="group-hover:translate-y-0.5 transition-transform duration-300">↓</span>
+      </button>
     </div>
-  </section>
-);
+  </header>
+  );
+};
 
 const Authority = () => (
-  <section id="about" className="bg-brand-offwhite">
-    <div className="section-container">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
-        <motion.div
-           initial={{ opacity: 0 }}
-           whileInView={{ opacity: 1 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.8 }}
-           className="relative aspect-video lg:aspect-square bg-gray-200 overflow-hidden"
-        >
-          <img 
-            src="/hero.png" 
-            alt="Pedro Martins" 
-            className="w-full h-full object-cover -scale-x-100"
-          />
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <h2 className="text-sm font-bold text-brand-gold uppercase tracking-[0.3em] mb-4">A Ponte entre dois mundos</h2>
-          <h3 className="text-4xl md:text-5xl font-serif mb-8">Da disciplina de Londres à força do Brasil.</h3>
-          <p className="text-lg text-brand-black/70 mb-6 italic">
-            "A performance não é apenas um número, é um design intencional de cada ponto de contato."
-          </p>
-          <p className="text-brand-black/80 leading-relaxed mb-8">
-            Pedro trouxe na bagagem a cultura de excelência das grandes agências europeias. Na Martins & Co., não entregamos apenas "anúncios". Entregamos <strong>Design de Performance</strong>: a união entre análise granular de dados e estética de boutique.
-          </p>
-          <div className="flex items-center gap-6">
-            <div>
-               <p className="text-3xl font-serif text-brand-gold">10M+</p>
-               <p className="text-xs uppercase font-bold tracking-widest text-brand-black/40">Gerados para Clientes</p>
+  <section id="about" className="sm:px-8 px-6 pt-20 pb-16 border-t border-neutral-100 bg-white">
+    <div className="max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="lg:col-span-5">
+          <div className="relative overflow-hidden bg-neutral-100 rounded-2xl aspect-[4/5]">
+            <img src="/hero.png" alt="Pedro Martins" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 -scale-x-100" />
+          </div>
+        </div>
+        <div className="lg:col-span-7">
+          <div className="flex flex-col justify-center h-full">
+            <div className="flex items-center gap-3 mb-6">
+              <ArrowDownRight className="w-4 h-4 text-neutral-400" />
+              <div className="h-px flex-1 bg-neutral-200"></div>
             </div>
-            <div className="w-px h-12 bg-brand-gold/20" />
-            <div>
-               <p className="text-3xl font-serif text-brand-gold">50+</p>
-               <p className="text-xs uppercase font-bold tracking-widest text-brand-black/40">Marcas Escaladas</p>
+            <h2 className="text-3xl font-semibold text-neutral-900 mb-6 tracking-tight">A Ponte entre dois mundos</h2>
+            <p className="text-lg leading-relaxed text-neutral-600 mb-8 font-mono">
+              Pedro trouxe na bagagem a cultura de excelência das grandes agências europeias. Na Martins & Co., não entregamos apenas "anúncios". Entregamos Design de Performance: a união entre análise granular de dados e estética de boutique.
+            </p>
+            <div className="grid grid-cols-2 gap-4 mb-10">
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold text-neutral-900 font-mono uppercase tracking-wide">IMPACTO</h3>
+                <ul className="text-sm text-neutral-500 space-y-2 font-mono">
+                  <li>• 10M+ Gerados</li>
+                  <li>• 50+ Marcas Escaladas</li>
+                </ul>
+              </div>
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold text-neutral-900 font-mono uppercase tracking-wide">FOCO</h3>
+                <ul className="text-sm text-neutral-500 space-y-2 font-mono">
+                  <li>• Conversão</li>
+                  <li>• Retenção</li>
+                  <li>• Escala</li>
+                </ul>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <a href="#services" className="px-6 py-3 rounded-lg bg-neutral-900 text-white font-medium hover:bg-neutral-800 transition-colors font-mono text-sm">Nossos Serviços</a>
+              <a href="https://wa.me/5511983404617" className="px-6 py-3 rounded-lg border border-neutral-200 text-neutral-900 font-medium hover:bg-neutral-50 transition-colors font-mono text-sm">Falar no WhatsApp</a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   </section>
 );
 
 const Services = () => (
-  <section id="services" className="bg-brand-black text-brand-offwhite">
-    <div className="section-container">
-      <div className="text-center max-w-3xl mx-auto mb-20">
-        <h2 className="text-sm font-bold text-brand-gold uppercase tracking-[0.3em] mb-4">O que fazemos</h2>
-        <h3 className="text-4xl md:text-5xl font-serif">Soluções de Elite para quem busca o Próximo Nível.</h3>
+  <section id="services" className="sm:px-8 px-6 bg-neutral-50 border-t border-neutral-200">
+    <div className="py-24 max-w-6xl mx-auto">
+      <div className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest font-mono">Serviços</span>
+          <div className="h-px flex-1 bg-neutral-200"></div>
+        </div>
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-neutral-900 mb-4">O que fazemos</h2>
+        <p className="text-lg text-neutral-500 font-mono max-w-2xl">Soluções de Elite para quem busca o Próximo Nível.</p>
       </div>
-
-      <div className="grid md:grid-cols-3 gap-8">
+      
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {[
           {
             icon: Target,
-            title: "Gestão de Google Ads",
-            desc: "Dominamos o tráfego de intenção. Posicionamos sua marca onde o dinheiro está pronto para ser gasto, com foco em ROI real.",
-            benefit: "Escalabilidade e Previsibilidade"
-          },
-          {
-            icon: Layout,
-            title: "Performance Landing Pages",
-            desc: "Páginas que não apenas informam, mas convertem. Design europeu focado em guiar o olhar para a decisão de compra.",
-            benefit: "Aumento Imediato de Conversão"
+            title: "Tráfego de Elite",
+            desc: "Gestão avançada de mídia paga focada em ROAS e LTV. Dominamos Meta, Google e TikTok Ads com precisão cirúrgica.",
+            tag: "Performance"
           },
           {
             icon: TrendingUp,
-            title: "Consultoria de Escala",
-            desc: "Diagnóstico completo de gargalos. Atuamos como seu braço direito estratégico para romper o teto de crescimento.",
-            benefit: "Liberdade e Lucratividade"
+            title: "Growth & CRO",
+            desc: "Otimização contínua de taxas de conversão. Analisamos cada etapa do seu funil para reduzir atrito e maximizar lucro.",
+            tag: "Growth"
+          },
+          {
+            icon: ShieldCheck,
+            title: "Estratégia Full-Stack",
+            desc: "Da criação da oferta à retenção do cliente. Desenhamos a arquitetura completa do seu ecossistema de vendas.",
+            tag: "Strategy"
           }
         ].map((service, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="p-8 border border-brand-offwhite/10 hover:border-brand-gold/40 transition-all group"
-          >
-            <service.icon className="w-10 h-10 text-brand-gold mb-6 group-hover:scale-110 transition-transform" />
-            <h4 className="text-2xl font-serif mb-4">{service.title}</h4>
-            <p className="text-brand-offwhite/60 mb-6 font-light leading-relaxed">
-              {service.desc}
-            </p>
-            <div className="pt-6 border-t border-brand-offwhite/10 flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-widest text-brand-gold">{service.benefit}</span>
-              <ChevronRight className="w-4 h-4 text-brand-gold" />
+          <div key={i} className="group bg-white border border-neutral-200 rounded-2xl p-6 hover:shadow-xl transition-all duration-300">
+            <div className="h-48 mb-6 bg-neutral-100 rounded-xl overflow-hidden relative border border-neutral-100 flex items-center justify-center">
+               <service.icon className="w-12 h-12 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-500 group-hover:scale-110" />
             </div>
-          </motion.div>
+            <div className="inline-flex gap-2 bg-neutral-100 text-neutral-600 px-3 py-1 rounded-full text-xs font-medium font-mono mb-4 border border-neutral-200">
+              <service.icon className="w-3 h-3" /> {service.tag}
+            </div>
+            <h3 className="text-xl font-semibold text-neutral-900 mb-3">{service.title}</h3>
+            <p className="text-neutral-500 text-sm leading-relaxed font-mono">{service.desc}</p>
+          </div>
         ))}
       </div>
     </div>
@@ -181,53 +203,42 @@ const Services = () => (
 );
 
 const WhyUs = () => (
-  <section id="why" className="bg-brand-offwhite border-y border-brand-gold/10">
-    <div className="section-container">
-      <div className="grid lg:grid-cols-2 gap-20">
-        <div>
-          <h2 className="text-4xl md:text-5xl font-serif mb-8">Por que a Martins & Co.<br/><span className="text-brand-gold">é o seu destino final?</span></h2>
-          <p className="text-brand-black/70 text-lg mb-12">
-            Não somos uma agência de volume. Somos uma boutique de resultado. Selecionamos nossos parceiros para garantir que cada um tenha o vigor técnico que merece.
-          </p>
-          <div className="space-y-8">
-            {[
-              { icon: Users, title: "Pessoas acima de Dashboards", desc: "Sua marca é cuidada por quem entende de negócios, não apenas por estagiários de anúncios." },
-              { icon: ShieldCheck, title: "Transparência Absoluta", desc: "Você sabe exatamente para onde vai cada centavo. Sem métricas de vaidade, apenas lucro." },
-              { icon: Award, title: "Rigor Técnico Europeu", desc: "Fomos forjados na exigência de Londres. Nosso padrão de entrega é o 'Padrão Ouro'." }
-            ].map((pillar, i) => (
-              <div key={i} className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center">
-                  <pillar.icon className="w-6 h-6 text-brand-gold" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg mb-1">{pillar.title}</h4>
-                  <p className="text-brand-black/60 font-light">{pillar.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+  <section id="why" className="px-6 sm:px-8 bg-white border-t border-neutral-200">
+    <div className="mx-auto max-w-6xl py-24">
+      <div className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest font-mono">Diferenciais</span>
+          <div className="h-px flex-1 bg-neutral-200"></div>
         </div>
-        <div className="relative">
-          <div className="absolute inset-0 gold-gradient opacity-10 -m-8 -z-10 rounded-full blur-3xl" />
-          <div className="bg-brand-black p-12 text-brand-offwhite border-t-4 border-brand-gold shadow-2xl">
-             <h4 className="text-2xl font-serif mb-6 text-center italic">O Método "Lado a Lado"</h4>
-             <p className="text-brand-offwhite/70 mb-8 leading-relaxed">
-               Não somos um fornecedor estático. Nos tornamos seu braço direito. Atuamos na estratégia, na criação e na análise, como se o negócio fosse nosso.
-             </p>
-             <div className="space-y-4">
-                <div className="flex items-center gap-3 text-sm">
-                  <div className="w-1.5 h-1.5 bg-brand-gold rounded-full" /> Reuniões quinzenais de alinhamento
-                </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <div className="w-1.5 h-1.5 bg-brand-gold rounded-full" /> Dashboard em tempo real 24/7
-                </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <div className="w-1.5 h-1.5 bg-brand-gold rounded-full" /> Acesso direto ao estrategista via WhatsApp
-                </div>
-             </div>
-             <a href="https://wa.me/5511983404617" className="btn-primary w-full mt-12 group">
-               Garantir Minha Vaga <ChevronRight className="group-hover:translate-x-1 transition-transform" />
-             </a>
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-neutral-900 mb-4">Por que a Martins & Co.?</h2>
+        <p className="text-lg text-neutral-500 max-w-2xl font-mono">Não somos uma agência de volume. Somos uma boutique de resultado.</p>
+      </div>
+      
+      <div className="space-y-12">
+        <div className="group grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="order-2 lg:order-1">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-xs text-neutral-500 font-mono font-medium">Método</span>
+              <div className="h-1 w-1 rounded-full bg-neutral-300"></div>
+              <span className="text-xs text-neutral-500 font-mono font-medium">Lado a Lado</span>
+            </div>
+            <h3 className="text-2xl font-bold text-neutral-900 mb-4">Transparência e Rigor</h3>
+            <p className="text-neutral-600 mb-6 leading-relaxed font-mono">
+              Você sabe exatamente para onde vai cada centavo. Sem métricas de vaidade, apenas lucro. Fomos forjados na exigência de Londres. Nosso padrão de entrega é o 'Padrão Ouro'.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-8">
+              <span className="px-3 py-1 text-xs bg-neutral-100 text-neutral-600 border border-neutral-200 rounded-full font-mono">Dashboard 24/7</span>
+              <span className="px-3 py-1 text-xs bg-neutral-100 text-neutral-600 border border-neutral-200 rounded-full font-mono">Reuniões Quinzenais</span>
+              <span className="px-3 py-1 text-xs bg-neutral-100 text-neutral-600 border border-neutral-200 rounded-full font-mono">Acesso Direto</span>
+            </div>
+            <a href="https://wa.me/5511983404617" className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-black transition-colors border-b border-transparent hover:border-black pb-0.5">
+              Garantir Minha Vaga <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+          <div className="order-1 lg:order-2">
+            <div className="rounded-xl overflow-hidden border border-neutral-200 shadow-xl bg-neutral-50 group-hover:-translate-y-2 transition-transform duration-500 p-12 flex items-center justify-center aspect-video">
+              <Award className="w-32 h-32 text-neutral-300 group-hover:text-neutral-900 transition-colors duration-500" />
+            </div>
           </div>
         </div>
       </div>
@@ -236,49 +247,26 @@ const WhyUs = () => (
 );
 
 const Footer = () => (
-  <footer className="bg-brand-black text-brand-offwhite pt-24 pb-12 border-t border-brand-gold/20">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="grid md:grid-cols-4 gap-12 mb-20">
-        <div className="col-span-2">
-           <span className="text-3xl font-serif font-bold tracking-tighter mb-6 block">
-            MARTINS<span className="text-brand-gold">.</span>CO
-          </span>
-          <p className="text-brand-offwhite/50 max-w-sm mb-8">
-            Consultoria de marketing digital boutique para marcas que não aceitam o mediano.
-          </p>
-          <div className="flex gap-4">
-            <a href="#" className="w-10 h-10 rounded-full border border-brand-gold/20 flex items-center justify-center hover:bg-brand-gold transition-all group">
-              <span className="text-xs font-bold group-hover:text-brand-black">IN</span>
-            </a>
-            <a href="#" className="w-10 h-10 rounded-full border border-brand-gold/20 flex items-center justify-center hover:bg-brand-gold transition-all group">
-              <span className="text-xs font-bold group-hover:text-brand-black">IG</span>
-            </a>
+  <footer className="bg-white border-t border-neutral-200 px-6 sm:px-8">
+    <div className="mx-auto max-w-6xl py-12 md:py-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-between items-center">
+        <div>
+          <div className="font-bold text-lg tracking-tight mb-2 font-glassure">MARTINS.CO</div>
+          <p className="text-neutral-500 text-sm font-mono">© {new Date().getFullYear()} Todos os direitos reservados.</p>
+        </div>
+        <div className="flex flex-col md:flex-row gap-6 md:justify-end items-start md:items-center text-sm font-medium text-neutral-600">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-50 text-neutral-700 border border-neutral-200 text-xs font-mono">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neutral-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-neutral-500"></span>
+            </span>
+            Aceitando novos clientes
           </div>
+          <nav className="flex gap-6 font-mono">
+            <a href="#" className="hover:text-black transition">Instagram</a>
+            <a href="#" className="hover:text-black transition">LinkedIn</a>
+          </nav>
         </div>
-        
-        <div>
-          <h5 className="font-bold uppercase tracking-widest text-xs text-brand-gold mb-6">Links</h5>
-          <ul className="space-y-4 text-sm text-brand-offwhite/60">
-            <li><a href="#" className="hover:text-brand-gold transition-colors">Início</a></li>
-            <li><a href="#services" className="hover:text-brand-gold transition-colors">Serviços</a></li>
-            <li><a href="#about" className="hover:text-brand-gold transition-colors">Pedro Martins</a></li>
-            <li><a href="#why" className="hover:text-brand-gold transition-colors">Diferenciais</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5 className="font-bold uppercase tracking-widest text-xs text-brand-gold mb-6">Contato</h5>
-          <ul className="space-y-4 text-sm text-brand-offwhite/60">
-            <li>contato@martinsco.com.br</li>
-            <li>@martins.co_</li>
-            <li>São Paulo • Londres</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div className="pt-12 border-t border-brand-offwhite/5 flex flex-col md:row items-center justify-between gap-6 text-xs text-brand-offwhite/30 uppercase tracking-[0.2em]">
-        <p>© {new Date().getFullYear()} MARTINS & CO. Todos os direitos reservados.</p>
-        <p>Design de Performance por Pedro Martins</p>
       </div>
     </div>
   </footer>
@@ -286,23 +274,15 @@ const Footer = () => (
 
 export default function App() {
   return (
-    <div className="overflow-x-hidden selection:bg-brand-gold selection:text-brand-black">
-      <Navbar />
+    <div className="w-full relative bg-white min-h-screen text-neutral-900 font-sans selection:bg-neutral-200 selection:text-black">
+      <Sidebar />
       <Hero />
-      <Authority />
-      <Services />
-      <WhyUs />
-      <Footer />
-      
-      {/* WhatsApp Floating Button */}
-      <a 
-        href="https://wa.me/5511983404617" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform active:scale-95 flex items-center justify-center"
-      >
-        <MessageCircle className="w-8 h-8 fill-current" />
-      </a>
+      <div id="main-content">
+        <Authority />
+        <Services />
+        <WhyUs />
+        <Footer />
+      </div>
     </div>
   );
 }

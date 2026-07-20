@@ -25,14 +25,12 @@ export function HeroBackground() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     
     const geometry = new THREE.TorusKnotGeometry(3, 0.9, 250, 32);
-    const material = new THREE.MeshBasicMaterial({
-      color: 0xcccccc,
+    const material = new THREE.MeshNormalMaterial({
       wireframe: true,
     });
     
-    material.color.setHex(0xd4af37); 
     material.transparent = true;
-    material.opacity = 0.2; 
+    material.opacity = 0.7; 
 
     const knot = new THREE.Mesh(geometry, material);
     scene.add(knot);
